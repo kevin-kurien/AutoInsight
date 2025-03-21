@@ -1,21 +1,20 @@
-FROM node:18-alpine as build
+FROM node:18-alpine 
 
+# Set working directory
 WORKDIR /app
 
-COPY package.json package-lock.json* ./
-RUN npm ci
+# Copy package files
+COPY app/package.json ./
+COPY app/package-lock.json* ./
+RUN npm install
 
-COPY . .
+# Copy all files
+COPY app/ .
 
+# Build the application
 RUN npm run build
 
-FROM nginx:alpine
+# Expose port
+EXPOSE 3000
 
-COPY --from=build /app/dist /usr/share/nginx/html
-
-COPY nginx.conf /etc/nginx/conf.de/default.conf
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
-
+CMD ["npm", "start"]

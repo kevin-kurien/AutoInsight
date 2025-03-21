@@ -1,4 +1,4 @@
-FROM node:18-alpine as build
+FROM node:18-alpine 
 
 # Set working directory
 WORKDIR /app
@@ -14,19 +14,7 @@ COPY app/ .
 # Build the application
 RUN npm run build
 
-RUN ls -la
-
-# Production environment
-FROM nginx:alpine
-
-# Copy built files
-COPY --from=build /app/.next /usr/share/nginx/html
-
-# Create Nginx config
-RUN rm -rf /etc/nginx/conf.d/default.conf
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
 # Expose port
-EXPOSE 5000
+EXPOSE 3000
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "start"]

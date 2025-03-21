@@ -4,12 +4,12 @@ FROM node:18-alpine as build
 WORKDIR /app
 
 # Copy package files
-COPY package.json ./
-COPY package-lock.json* ./
+COPY app/package.json ./
+COPY app/package-lock.json* ./
 RUN npm install
 
 # Copy all files
-COPY . .
+COPY app/ .
 
 # Build the application
 RUN npm run build

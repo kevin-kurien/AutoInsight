@@ -5,8 +5,4 @@ services:
     build: ./frontend
     ports:
       - "2000:3000"  # Map host port 2000 to container port 5000
-    volumes:
-      # For development - mount source code for hot reloading
-      - ./frontend/app:/app
-      # Exclude node_modules from being overwritten by the mount
-      - /app/node_modules
+  

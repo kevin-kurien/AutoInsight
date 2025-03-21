@@ -14,6 +14,8 @@ COPY app/ .
 # Build the application
 RUN npm run build
 
+RUN ls -la
+
 # Production environment
 FROM nginx:alpine
 

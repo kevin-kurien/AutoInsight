@@ -4,5 +4,5 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "2000:3000"  # Map host port 2000 to container port 5000
+      - "3000:3000"  # Map host port 2000 to container port 5000
   

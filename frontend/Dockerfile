@@ -20,7 +20,7 @@ RUN ls -la
 FROM nginx:alpine
 
 # Copy built files
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /app/.next /usr/share/nginx/html
 
 # Create Nginx config
 RUN rm -rf /etc/nginx/conf.d/default.conf

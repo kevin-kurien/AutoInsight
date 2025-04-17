@@ -11,10 +11,16 @@ RUN npm install
 # Copy all files
 COPY app/ .
 
+# For debugging
+RUN ls -la
+
 # Build the application
 RUN npm run build
+
+# For debugging and verifying next was created
+RUN ls -la .next || echo "No .next  directory found"
 
 # Expose port
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
